@@ -3,15 +3,14 @@
 This app uses the iphone pedometer data to feed into an adventure/exploration game.
 
 Required User Stories:
-
-  [x] Load pedometer data into game
+-  [x] Load pedometer data into game
   
-  [] Explore map and find items
+- [ ] Explore map and find items
   
-  [] Earn Achievements
+- [ ] Earn Achievements
 
 Optional User Stories:
 
-  [] Make the greatest game ever
+- [ ] Make the greatest game ever
 
   
