@@ -8,6 +8,7 @@ Required User Stories:
 - [ ] Earn Achievements
 - [ ] Functional Settings Page
 - [ ] Items effect player stats
+- [ ] Storyline
 
 Optional User Stories:
 
