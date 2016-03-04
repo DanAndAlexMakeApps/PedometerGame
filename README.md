@@ -16,4 +16,4 @@ Optional User Stories:
 - [ ] Buildings
 
 # Wireframe
-<img src='http://imgur.com/a/AJ0Rz' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Wireframe uploaded at: 'http://imgur.com/a/AJ0Rz'
