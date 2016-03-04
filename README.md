@@ -15,4 +15,5 @@ Optional User Stories:
 - [ ] Make the greatest game ever
 - [ ] Buildings
 
-  
+# Wireframe
+<img src='http://imgur.com/a/AJ0Rz' title='Video Walkthrough' width='' alt='Video Walkthrough' />
