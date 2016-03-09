@@ -20,69 +20,6 @@ class ViewController: UIViewController {
     
     var items: [item]!
 
-    // For testing purposes only
-    
-    @IBAction func addSteps(sender: UIButton) {
-        self.stepsTaken += 5000
-        self.stepsLabel.text = "\(self.stepsTaken)"
-    }
-    
-    @IBAction func resetButton(sender: UIButton) {
-        self.stepsUsed = 0
-        self.stepsLabel.text = "\(self.stepsTaken)"
-    }
-    
-    
-    // On button tap, call playerMoved() which checks to see if player has enough steps and if so sets values
-    // and then returns true. If true, move player and change playerSprite.
-    
-    @IBAction func moveLeftButton(sender: UIButton) {
-        if (playerMoved()) {
-            playerLocation.frame.origin.x -= 10
-            playerSprite.image = UIImage(named: "playerLeft")
-            if (playerLocation.frame.origin.x <= 0) {
-                self.xOffset = 325
-                self.yOffset = 0
-                nextArea()
-            }
-        }
-    }
-    
-    @IBAction func moveUpButton(sender: UIButton) {
-        if (playerMoved()) {
-            playerLocation.frame.origin.y -= 10
-            playerSprite.image = UIImage(named: "playerUp")
-            if (playerLocation.frame.origin.y <= 60) {
-                self.xOffset = 0
-                self.yOffset = 325
-                nextArea()
-            }
-        }
-    }
-    
-    @IBAction func moveDownButton(sender: UIButton) {
-        if (playerMoved()) {
-            playerLocation.frame.origin.y += 10
-            playerSprite.image = UIImage(named: "playerDown")
-            if (playerLocation.frame.origin.y + 50 >= 435) {
-                self.xOffset = 0
-                self.yOffset = -325
-                nextArea()
-            }
-        }
-    }
-    
-    @IBAction func moveRight(sender: UIButton) {
-        if (playerMoved()) {
-            playerLocation.frame.origin.x += 10
-            playerSprite.image = UIImage(named: "playerRight")
-            if (playerLocation.frame.origin.x + 50 >= 375) {
-                self.xOffset = -325
-                self.yOffset = 0
-                nextArea()
-            }
-        }
-    }
     
     // Initialize variables
     
@@ -101,6 +38,12 @@ class ViewController: UIViewController {
     var xOffset: Int = 0
     var yOffset: Int = 0
     var squaresMoved: Int = 0
+    
+    var cellWidth: CGFloat!
+    var cellHeight: CGFloat!
+    
+    var playerLoc = [0,0]
+    var mapLoc = [0,0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,6 +111,7 @@ class ViewController: UIViewController {
                     }
                 })
             }
+            
         }
         
         
@@ -188,6 +132,16 @@ class ViewController: UIViewController {
                 view.addSubview(itemView)
             }
         }
+        
+        
+        cellWidth = mapView.bounds.size.width / CGFloat(22)
+        cellHeight = mapView.bounds.size.height / CGFloat(22)
+        playerLocation.bounds.size.height = cellHeight
+        playerLocation.bounds.size.width = cellWidth
+        
+        print(cellWidth)
+        print(cellHeight)
+        playerLocation.center = mapView.center
         
     }
 
@@ -268,6 +222,84 @@ class ViewController: UIViewController {
     }
     
     
+    // For testing purposes only
+    
+    @IBAction func addSteps(sender: UIButton) {
+        self.stepsTaken += 5000
+        self.stepsLabel.text = "\(self.stepsTaken)"
+    }
+    
+    @IBAction func resetButton(sender: UIButton) {
+        self.stepsUsed = 0
+        self.stepsLabel.text = "\(self.stepsTaken)"
+    }
+    
+    
+    // On button tap, call playerMoved() which checks to see if player has enough steps and if so sets values
+    // and then returns true. If true, move player and change playerSprite.
+    
+    @IBAction func moveLeftButton(sender: UIButton) {
+        if (playerMoved()) {
+            playerLoc[0] -= 1
+            
+            playerLocation.center.x -= cellWidth
+            playerSprite.image = UIImage(named: "playerLeft")
+            if (playerLoc[0] < (mapLoc[0] - 1) * 10) {
+                mapLoc[0] -= 2
+                self.xOffset = 325
+                self.yOffset = 0
+                nextArea()
+            }
+        }
+    }
+    
+    @IBAction func moveUpButton(sender: UIButton) {
+        if (playerMoved()) {
+            playerLoc[1] += 1
+            
+            playerLocation.center.y -= cellHeight
+            playerSprite.image = UIImage(named: "playerUp")
+            if (playerLoc[1] > (mapLoc[1]+1)*10) {
+                mapLoc[1] += 2
+                
+                self.xOffset = 0
+                self.yOffset = 325
+                nextArea()
+            }
+        }
+    }
+    
+    @IBAction func moveDownButton(sender: UIButton) {
+        if (playerMoved()) {
+            playerLoc[1] -= 1
+            
+            playerLocation.center.y += cellHeight
+            playerSprite.image = UIImage(named: "playerDown")
+            if (playerLoc[1] < (mapLoc[1]-1)*10) {
+                mapLoc[1] -= 2
+                
+                self.xOffset = 0
+                self.yOffset = -325
+                nextArea()
+            }
+        }
+    }
+    
+    @IBAction func moveRight(sender: UIButton) {
+        if (playerMoved()) {
+            playerLoc[0] += 1
+            
+            playerLocation.center.x += cellWidth
+            playerSprite.image = UIImage(named: "playerRight")
+            if (playerLoc[0] > (mapLoc[0]+1)*10) {
+                mapLoc[0] += 2
+                
+                self.xOffset = -325
+                self.yOffset = 0
+                nextArea()
+            }
+        }
+    }
 
 
 }
