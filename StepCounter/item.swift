@@ -18,15 +18,26 @@ class item: NSObject {
     var yPos: Int
     var found: Bool
     
-    var itemView: UIView!
+    var itemView: UIImageView!
     
-    init(name: String, description: String, picture: UIImage, xPos: Int, yPos: Int){
+    init(name: String, description: String, picture: UIImage, xPos: Int, yPos: Int, width: CGFloat, height: CGFloat, mapCenter: CGPoint){
         self.name = name
         self.descrip = description
         self.picture = picture
         self.found = false
         self.xPos = xPos
         self.yPos = yPos
+        
+        
+        
+        itemView = UIImageView(frame: CGRectMake(0, 0, width, height))
+        itemView.image = picture
+        itemView.center.x = mapCenter.x + width * CGFloat(xPos)
+        itemView.center.y = mapCenter.y + height * CGFloat(yPos)
+        
+        itemView.layer.borderWidth = 1
+        itemView.layer.borderColor = UIColor.blackColor().CGColor
+        
     }
     
 }

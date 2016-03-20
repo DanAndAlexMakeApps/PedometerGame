@@ -26,9 +26,9 @@ class InventoryViewController: UIViewController, UICollectionViewDataSource {
         self.stepsToday.text = "\(self.defaults.integerForKey("stepsTaken"))"
         self.stepsSinceDownload.text = "\(self.defaults.integerForKey("stepsSinceDownload"))"
         
-        //for testing items
-        let i1 = item(name: "test", description: "this is a test", picture: UIImage(named: "shield")!, xPos: 10, yPos: 10)
-        items = [i1]
+//        //for testing items
+//        let i1 = item(name: "test", description: "this is a test", picture: UIImage(named: "shield")!, xPos: 10, yPos: 10, width: 10, height: 10)
+//        items = [i1]
     }
     
     

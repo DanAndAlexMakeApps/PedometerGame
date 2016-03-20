@@ -12,14 +12,17 @@ import CoreMotion
 class ViewController: UIViewController {
     
     
-    @IBOutlet weak var playerLocation: UIView!
     @IBOutlet weak var stairLabel: UILabel!
     @IBOutlet weak var stepsLabel: UILabel!
-    @IBOutlet weak var playerSprite: UIImageView!
     @IBOutlet weak var mapView: UIView!
     
+    
+    @IBOutlet weak var newPlayerImage: UIImageView!
+    
     var items: [item]!
-
+    var maps: [mapObject]!
+    
+    var center: CGPoint!
     
     // Initialize variables
     
@@ -45,8 +48,26 @@ class ViewController: UIViewController {
     var playerLoc = [0,0]
     var mapLoc = [0,0]
     
+    var currentMap: mapObject!
+    
+    var mapHeight: CGFloat!
+    var mapWidth: CGFloat!
+    
+    var playerImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.setNeedsLayout()
+        mapView.layoutIfNeeded()
+        
+        newPlayerImage.layer.borderWidth = 1
+        newPlayerImage.layer.borderColor = UIColor.blackColor().CGColor
+        
+        mapHeight = mapView.frame.size.height
+        mapWidth = mapView.frame.size.width
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         self.mapView.backgroundColor = UIColor(red: 101/255, green: 247/255, blue: 159/255, alpha: 1.0)
         
@@ -60,7 +81,6 @@ class ViewController: UIViewController {
         cal.timeZone = timeZone
         
         let midnightOfToday = cal.dateFromComponents(comps)!
-        
         
         // If pedometer info is available, access it and store it to NSUserDefaults
         
@@ -115,34 +135,39 @@ class ViewController: UIViewController {
         }
         
         
-        //for testing items
-        
-        let i1 = item(name: "testing1", description:  "testing1", picture: UIImage(named: "shield")!, xPos: 102, yPos: 103)
-        let i2 = item(name: "testing2", description:  "testing2", picture: UIImage(named: "shield")!, xPos: 202, yPos: 203)
-        
-        items = [i1, i2]
-        
-        for item in items{
-            print("item")
-            if(!item.found){
-                let itemView = UIImageView(image: item.picture)
-                itemView.frame = CGRect(x: item.xPos, y: item.yPos, width: 10, height: 10)
-            
-                item.itemView = itemView
-                view.addSubview(itemView)
-            }
-        }
+
         
         
         cellWidth = mapView.bounds.size.width / CGFloat(22)
         cellHeight = mapView.bounds.size.height / CGFloat(22)
-        playerLocation.bounds.size.height = cellHeight
-        playerLocation.bounds.size.width = cellWidth
+        center = self.mapView.center
         
-        print(cellWidth)
-        print(cellHeight)
-        playerLocation.center = mapView.center
+        let playerImage = UIImageView(image: UIImage(named: "playerDown"))
+        playerImage.bounds.size.height = cellHeight
+        playerImage.bounds.size.width = cellWidth
+        playerImage.layer.borderWidth = 1
+        playerImage.layer.borderColor = UIColor.blackColor().CGColor
         
+        //find current map from userdefauls--for now just creating from new
+        self.mapView.removeFromSuperview()
+        let newMap = mapObject(cLoc: [0, 0], view: UIView(frame: CGRectMake(0, 60, mapWidth, mapHeight)), cellWidth: self.cellWidth, cellHeight: self.cellHeight, center: center)
+        newMap.view.backgroundColor = UIColor(red: 101/255, green: 247/255, blue: 159/255, alpha: 1.0)
+        self.view.addSubview(newMap.view)
+        self.view.sendSubviewToBack(newMap.view)
+        currentMap = newMap
+        items = currentMap.items
+        
+        //update from userdefaults/parse?
+        maps = []
+        maps.append(newMap)
+        
+        newPlayerImage.center = currentMap.center
+        playerImage.center = currentMap.center
+        
+        self.view.addSubview(playerImage)
+        
+        newPlayerImage.removeFromSuperview()
+        self.playerImage = playerImage
     }
 
     
@@ -155,9 +180,10 @@ class ViewController: UIViewController {
             self.defaults.setInteger(self.stepsUsed, forKey: "stepsUsed")
             self.stepsRemaining = self.stepsTaken - self.stepsUsed
             self.stepsLabel.text = "\(self.stepsRemaining)"
+
+            let playerLocX = playerImage.center.x
+            let playerLocY = playerImage.center.y
             
-            let playerLocX = (playerLocation.frame.origin.x)
-            let playerLocY = (playerLocation.frame.origin.y)
             for item in items{
                 let itemPosX = item.itemView.frame.origin.x
                 let itemPosY = item.itemView.frame.origin.y
@@ -187,28 +213,78 @@ class ViewController: UIViewController {
         let x = CGFloat(self.xOffset)
         let y = CGFloat(self.yOffset)
         
-        let mapFrame = CGRectOffset(mapView.frame, x, y)
-        UIView.animateKeyframesWithDuration(2, delay: 0, options: .CalculationModeCubic, animations: {
+        //check if map has already been discovered--
+        //possibly sort maps or store better to make search faster?
+        for map in maps{
+            if(map.centerLocation == mapLoc){
+                //map already exists: load map
+                currentMap.view.removeFromSuperview()
+                self.view.addSubview(map.view)
+                self.view.sendSubviewToBack(map.view)
+                map.view.center = center
+                currentMap = map
+                items = currentMap.items
                 
-            UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5) {
-                self.mapView.frame = mapFrame
-            }
                 
-            }, completion: nil)
-        
-        let playerFrame = CGRectOffset(playerLocation.frame, x, y)
-        UIView.animateKeyframesWithDuration(2, delay: 0, options: .CalculationModeCubic, animations: {
-            
-            UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5) {
-                self.playerLocation.frame = playerFrame
+                return
             }
-            
-            }, completion: nil)
+        }
+        //map hasn't been found, create new map and load
         
-        let newMapView = UIView(frame: CGRectMake(0, 60, 375, 375))
-        newMapView.backgroundColor = UIColor(red: 101/255, green: 247/255, blue: 159/255, alpha: 1.0)
-        self.view.insertSubview(newMapView, atIndex: 0)
-        ++squaresMoved
+        //fix dimensions of new view to work with autolayout
+        let newMap = mapObject(cLoc: [mapLoc[0], mapLoc[1]], view: UIView(frame: CGRectMake(0, 60, mapWidth, mapHeight)), cellWidth: self.cellWidth, cellHeight: self.cellHeight, center: center)
+        
+        
+
+        currentMap.view.removeFromSuperview()
+        
+        
+        newMap.view.backgroundColor = UIColor(colorLiteralRed: Float(Float(arc4random()) / Float(UINT32_MAX)), green: Float(Float(arc4random()) / Float(UINT32_MAX)), blue: Float(Float(arc4random()) / Float(UINT32_MAX)), alpha: Float(Float(arc4random()) / Float(UINT32_MAX)))
+        self.view.addSubview(newMap.view)
+        self.view.sendSubviewToBack(newMap.view)
+        newMap.view.center = center
+        
+        currentMap = newMap
+        maps.append(newMap)
+        items = currentMap.items
+        
+//        print("created new map view")
+//        self.view.insertSubview(newMap.view, atIndex: 0)
+//        print("inserted")
+//        
+//        
+//        //animate the view of the new map to come in
+//        UIView.animateWithDuration(1) { () -> Void in
+//            newMap.view.center = self.center
+//        }
+//        print("animated")
+        
+        
+        //Old code:
+        
+        
+//        let mapFrame = CGRectOffset(mapView.frame, x, y)
+//        UIView.animateKeyframesWithDuration(2, delay: 0, options: .CalculationModeCubic, animations: {
+//                
+//            UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5) {
+//                self.mapView.frame = mapFrame
+//            }
+//                
+//            }, completion: nil)
+//        
+//        let playerFrame = CGRectOffset(playerLocation.frame, x, y)
+//        UIView.animateKeyframesWithDuration(2, delay: 0, options: .CalculationModeCubic, animations: {
+//            
+//            UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5) {
+//                self.playerLocation.frame = playerFrame
+//            }
+//            
+//            }, completion: nil)
+//        
+//        let newMapView = UIView(frame: CGRectMake(0, 60, 375, 375))
+//        newMapView.backgroundColor = UIColor(red: 101/255, green: 247/255, blue: 159/255, alpha: 1.0)
+//        self.view.insertSubview(newMapView, atIndex: 0)
+//        ++squaresMoved
         
         
         
@@ -242,13 +318,21 @@ class ViewController: UIViewController {
         if (playerMoved()) {
             playerLoc[0] -= 1
             
-            playerLocation.center.x -= cellWidth
-            playerSprite.image = UIImage(named: "playerLeft")
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, -self.cellWidth, 0)
+            })
+            
+            playerImage.image = UIImage(named: "playerLeft")
             if (playerLoc[0] < (mapLoc[0] - 1) * 10) {
                 mapLoc[0] -= 2
                 self.xOffset = 325
                 self.yOffset = 0
                 nextArea()
+                
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, self.cellWidth * 20, 0)
+                    
+                })
             }
         }
     }
@@ -256,15 +340,24 @@ class ViewController: UIViewController {
     @IBAction func moveUpButton(sender: UIButton) {
         if (playerMoved()) {
             playerLoc[1] += 1
-            
-            playerLocation.center.y -= cellHeight
-            playerSprite.image = UIImage(named: "playerUp")
+
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, 0, -self.cellHeight)
+            })
+
+            playerImage.image = UIImage(named: "playerUp")
             if (playerLoc[1] > (mapLoc[1]+1)*10) {
                 mapLoc[1] += 2
                 
                 self.xOffset = 0
                 self.yOffset = 325
                 nextArea()
+            
+                UIView.animateWithDuration(1, animations: { () -> Void in
+
+                    self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, 0, self.cellHeight * 20)
+                })
+                
             }
         }
     }
@@ -272,15 +365,25 @@ class ViewController: UIViewController {
     @IBAction func moveDownButton(sender: UIButton) {
         if (playerMoved()) {
             playerLoc[1] -= 1
+
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, 0, self.cellHeight)
+                
+            })
             
-            playerLocation.center.y += cellHeight
-            playerSprite.image = UIImage(named: "playerDown")
+            
+            playerImage.image = UIImage(named: "playerDown")
             if (playerLoc[1] < (mapLoc[1]-1)*10) {
                 mapLoc[1] -= 2
                 
                 self.xOffset = 0
                 self.yOffset = -325
                 nextArea()
+                
+                UIView.animateWithDuration(1, animations: { () -> Void in
+                    self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, 0, -(self.cellHeight * 20))
+                })
+                
             }
         }
     }
@@ -289,14 +392,25 @@ class ViewController: UIViewController {
         if (playerMoved()) {
             playerLoc[0] += 1
             
-            playerLocation.center.x += cellWidth
-            playerSprite.image = UIImage(named: "playerRight")
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, self.cellWidth, 0)
+            })
+            
+            
+            playerImage.image = UIImage(named: "playerRight")
             if (playerLoc[0] > (mapLoc[0]+1)*10) {
                 mapLoc[0] += 2
                 
                 self.xOffset = -325
                 self.yOffset = 0
                 nextArea()
+                
+                
+                UIView.animateWithDuration(1, animations: { () -> Void in
+
+                    self.playerImage.transform = CGAffineTransformTranslate(self.playerImage.transform, -(self.cellWidth * 20), 0)
+                })
+                
             }
         }
     }
