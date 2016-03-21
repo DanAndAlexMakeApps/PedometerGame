@@ -234,7 +234,7 @@ class ViewController: UIViewController {
                 map.view.center = center
                 currentMap = map
                 items = currentMap.items
-                
+                self.view.sendSubviewToBack(controlBoardView)
                 
                 return
             }
