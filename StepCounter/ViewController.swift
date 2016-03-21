@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var stepsLabel: UILabel!
     @IBOutlet weak var mapView: UIView!
     
+    @IBOutlet weak var controlBoardView: UIView!
     
     @IBOutlet weak var newPlayerImage: UIImageView!
     
@@ -168,6 +169,11 @@ class ViewController: UIViewController {
         
         newPlayerImage.removeFromSuperview()
         self.playerImage = playerImage
+        self.view.sendSubviewToBack(controlBoardView)
+        
+        print("Player location:")
+        print("x= \(playerImage.center.x)")
+        print("y= \(playerImage.center.y)")
     }
 
     
@@ -180,24 +186,7 @@ class ViewController: UIViewController {
             self.defaults.setInteger(self.stepsUsed, forKey: "stepsUsed")
             self.stepsRemaining = self.stepsTaken - self.stepsUsed
             self.stepsLabel.text = "\(self.stepsRemaining)"
-
-            let playerLocX = playerImage.center.x
-            let playerLocY = playerImage.center.y
             
-            for item in items{
-                let itemPosX = item.itemView.frame.origin.x
-                let itemPosY = item.itemView.frame.origin.y
-                print("item")
-                print(itemPosX)
-                print("player")
-                print(playerLocX)
-                if(itemPosX==playerLocX){
-                    if(itemPosY==playerLocY){
-                        item.found = true
-                        item.itemView.removeFromSuperview()
-                    }
-                }
-            }
             
             return true
         }
@@ -205,6 +194,27 @@ class ViewController: UIViewController {
             return false
         }
         
+        
+    }
+    
+    func afterMove() {
+        
+        print("x = \(playerLoc[0])")
+        print("y = \(playerLoc[1])")
+        
+        for item in items{
+            if(item.absolutePosition[0] == playerLoc[0]){
+                if(item.absolutePosition[1] == playerLoc[1]){
+                    
+                    print("FOUND")
+                    
+                    item.found = true
+                    item.itemView.removeFromSuperview()
+                    
+                }
+            }
+        }
+
         
     }
     
@@ -242,6 +252,8 @@ class ViewController: UIViewController {
         newMap.view.backgroundColor = UIColor(colorLiteralRed: Float(Float(arc4random()) / Float(UINT32_MAX)), green: Float(Float(arc4random()) / Float(UINT32_MAX)), blue: Float(Float(arc4random()) / Float(UINT32_MAX)), alpha: Float(Float(arc4random()) / Float(UINT32_MAX)))
         self.view.addSubview(newMap.view)
         self.view.sendSubviewToBack(newMap.view)
+        self.view.sendSubviewToBack(controlBoardView)
+        
         newMap.view.center = center
         
         currentMap = newMap
@@ -335,6 +347,7 @@ class ViewController: UIViewController {
                 })
             }
         }
+        afterMove()
     }
     
     @IBAction func moveUpButton(sender: UIButton) {
@@ -360,6 +373,7 @@ class ViewController: UIViewController {
                 
             }
         }
+        afterMove()
     }
     
     @IBAction func moveDownButton(sender: UIButton) {
@@ -386,6 +400,7 @@ class ViewController: UIViewController {
                 
             }
         }
+        afterMove()
     }
     
     @IBAction func moveRight(sender: UIButton) {
@@ -413,6 +428,7 @@ class ViewController: UIViewController {
                 
             }
         }
+        afterMove()
     }
 
 

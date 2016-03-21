@@ -129,6 +129,7 @@
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="controlBoardView" destination="8ZG-tq-hTt" id="lQM-i1-KcU"/>
                         <outlet property="mapView" destination="xyF-e5-o8l" id="0ae-C2-sTW"/>
                         <outlet property="newPlayerImage" destination="6Ra-dF-aUX" id="gKK-Tf-q1b"/>
                         <outlet property="stairLabel" destination="dqQ-ar-7ID" id="XO5-Bw-1No"/>

@@ -21,6 +21,11 @@ class mapObject: NSObject {
     var center: CGPoint!
     
     init(cLoc: [Int], view: UIView, cellWidth: CGFloat, cellHeight: CGFloat, center: CGPoint){
+        
+        print("making new map")
+        print("center  = \(view.center.x)")
+        print("center y = \(view.center.y)")
+        
         self.centerLocation = cLoc
         self.items = []
         self.view = view
@@ -49,9 +54,16 @@ class mapObject: NSObject {
             let chance = Double(CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
             if(chance < odds){
                 
+                let xPos = Int(arc4random_uniform(20) + 1) - 10
+                let yPos = Int(arc4random_uniform(20) + 1) - 10
+                
+                
+                
                 //customize item properly
                 //randomize position
-                let newItem = item(name: "", description: "", picture: UIImage(named: "shield")!, xPos: i, yPos: i, width: cellWidth, height: cellHeight, mapCenter: view.center)
+                let posInMap = [centerLocation[0] * 10 + xPos, centerLocation[1] * 10 + yPos]
+                
+                let newItem = item(name: "", description: "", picture: UIImage(named: "shield")!, xPos: xPos, yPos: yPos, width: cellWidth, height: cellHeight, mapCenter: view.center, positionInMap: posInMap)
                 items.append(newItem)
                 self.view.addSubview(newItem.itemView)
                 
@@ -62,6 +74,7 @@ class mapObject: NSObject {
             }
         }
         
+
         
     }
     
