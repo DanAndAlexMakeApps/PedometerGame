@@ -58,6 +58,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
         
         mapView.setNeedsLayout()
         mapView.layoutIfNeeded()
@@ -431,5 +432,15 @@ class ViewController: UIViewController {
         afterMove()
     }
 
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("segueing")
+        if let mapViewController = segue.destinationViewController as? MapViewController {
+            print("if let")
+            mapViewController.maps = maps
+            
+        }
+    }
+    
 
 }

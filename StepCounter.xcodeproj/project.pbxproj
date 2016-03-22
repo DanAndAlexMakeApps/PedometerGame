@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		397C34DE1C8FB28500F6EACA /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397C34DD1C8FB28500F6EACA /* mapView.swift */; };
 		397C34E01C90BEA000F6EACA /* mapObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397C34DF1C90BEA000F6EACA /* mapObject.swift */; };
+		39BC38531CA0E2190043CCA3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BC38521CA0E2190043CCA3 /* MapViewController.swift */; };
 		39C1B4A11C714C85007A2605 /* inventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C1B4A01C714C85007A2605 /* inventoryItem.swift */; };
 		39C1B4A71C714F89007A2605 /* item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C1B4A61C714F89007A2605 /* item.swift */; };
 		FAE568431C68035700766A87 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE568421C68035700766A87 /* MapCell.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		397C34DD1C8FB28500F6EACA /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
 		397C34DF1C90BEA000F6EACA /* mapObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapObject.swift; sourceTree = "<group>"; };
+		39BC38521CA0E2190043CCA3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		39C1B4A01C714C85007A2605 /* inventoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = inventoryItem.swift; sourceTree = "<group>"; };
 		39C1B4A61C714F89007A2605 /* item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = item.swift; sourceTree = "<group>"; };
 		FAE568421C68035700766A87 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				FAEDD92E1C5DFD3B008755B5 /* ViewController.swift */,
 				FAE568451C6AB08000766A87 /* InventoryViewController.swift */,
 				39C1B4A01C714C85007A2605 /* inventoryItem.swift */,
+				39BC38521CA0E2190043CCA3 /* MapViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				39C1B4A11C714C85007A2605 /* inventoryItem.swift in Sources */,
 				FAE568461C6AB08000766A87 /* InventoryViewController.swift in Sources */,
 				FAEDD92D1C5DFD3B008755B5 /* AppDelegate.swift in Sources */,
+				39BC38531CA0E2190043CCA3 /* MapViewController.swift in Sources */,
 				39C1B4A71C714F89007A2605 /* item.swift in Sources */,
 				FAE568431C68035700766A87 /* MapCell.swift in Sources */,
 				397C34DE1C8FB28500F6EACA /* mapView.swift in Sources */,

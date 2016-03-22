@@ -3,9 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Map-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="StepCounter" customModuleProvider="target" sceneMemberID="viewController">
@@ -103,6 +104,13 @@
                                             <action selector="resetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CNc-nF-yMZ"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HkU-GO-p9J">
+                                        <rect key="frame" x="17" y="58" width="67" height="30"/>
+                                        <state key="normal" title="View Map"/>
+                                        <connections>
+                                            <segue destination="VIm-xB-4WK" kind="push" id="YBn-vq-5iF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -124,9 +132,7 @@
                             <constraint firstItem="oxC-WI-NZk" firstAttribute="top" secondItem="8ZG-tq-hTt" secondAttribute="bottom" id="v25-B4-WtN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="footsteps" id="J1Q-ay-as9">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="NBo-EE-g3f"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="controlBoardView" destination="8ZG-tq-hTt" id="lQM-i1-KcU"/>
@@ -138,7 +144,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="693.5" y="365.5"/>
+            <point key="canvasLocation" x="1280.5" y="365.5"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="yhx-0Q-ivr">
+            <objects>
+                <viewController id="VIm-xB-4WK" customClass="MapViewController" customModule="StepCounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YcG-Zj-CpH"/>
+                        <viewControllerLayoutGuide type="bottom" id="dLa-MR-eRt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1hb-lh-W7s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfV-BI-xJd">
+                                <rect key="frame" x="0.0" y="72" width="375" height="375"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wfV-BI-xJd" secondAttribute="height" multiplier="1:1" id="Gdk-AF-nzh"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-0n-2Mn">
+                                <rect key="frame" x="167" y="455" width="40" height="30"/>
+                                <state key="normal" title="BACK"/>
+                                <connections>
+                                    <action selector="onBack:" destination="VIm-xB-4WK" eventType="touchUpInside" id="Nxf-kC-6qe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wfV-BI-xJd" secondAttribute="trailing" id="3NB-h0-U8V"/>
+                            <constraint firstItem="wfV-BI-xJd" firstAttribute="top" secondItem="YcG-Zj-CpH" secondAttribute="bottom" constant="8" id="7ul-cd-AET"/>
+                            <constraint firstItem="wfV-BI-xJd" firstAttribute="leading" secondItem="1hb-lh-W7s" secondAttribute="leading" id="cdL-Gc-AzB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="FXb-HZ-OKd"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="mapBackgroundView" destination="wfV-BI-xJd" id="daa-fs-J5R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XVf-cF-2zc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="693.5" y="1186.5"/>
         </scene>
         <!--Inventory-->
         <scene sceneID="nPA-9G-H7E">
@@ -238,7 +288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCU-hH-G9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1208.5" y="365.5"/>
+            <point key="canvasLocation" x="1795.5" y="365.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ib0-p7-efF">
@@ -266,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kzG-f4-1Ow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1675.5" y="365.5"/>
+            <point key="canvasLocation" x="2262.5" y="365.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5sh-5b-5Fs">
@@ -279,7 +329,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="yqg-JK-OoV"/>
+                        <segue destination="mYN-iL-xGc" kind="relationship" relationship="viewControllers" id="yqg-JK-OoV"/>
                         <segue destination="FtA-lq-LRv" kind="relationship" relationship="viewControllers" id="plx-6C-xrR"/>
                         <segue destination="uj4-SS-U9K" kind="relationship" relationship="viewControllers" id="29h-M8-yH6"/>
                     </connections>
@@ -287,6 +337,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11W-ad-d7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="219.5" y="365.5"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="5M6-uh-mQX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mYN-iL-xGc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="footsteps" id="J1Q-ay-as9">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WHE-5Q-vms">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zdI-fc-D0q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ce9-VN-fc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="693.5" y="365.5"/>
         </scene>
     </scenes>
     <resources>
