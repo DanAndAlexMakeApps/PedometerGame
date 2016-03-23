@@ -56,6 +56,11 @@ class ViewController: UIViewController {
     
     var playerImage: UIImageView!
     
+    var farXPos: CGFloat!
+    var farYPos: CGFloat!
+    var farXNeg: CGFloat!
+    var farYNeg: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
@@ -175,6 +180,11 @@ class ViewController: UIViewController {
         print("Player location:")
         print("x= \(playerImage.center.x)")
         print("y= \(playerImage.center.y)")
+        
+        farXNeg = 0
+        farXPos = 0
+        farYNeg = 0
+        farYPos = 0
     }
 
     
@@ -202,6 +212,7 @@ class ViewController: UIViewController {
         
         print("x = \(playerLoc[0])")
         print("y = \(playerLoc[1])")
+    
         
         for item in items{
             if(item.absolutePosition[0] == playerLoc[0]){
@@ -260,6 +271,19 @@ class ViewController: UIViewController {
         currentMap = newMap
         maps.append(newMap)
         items = currentMap.items
+        
+        if(CGFloat(mapLoc[0]) > farXPos){
+            farXPos = CGFloat(mapLoc[0])
+        }
+        if(CGFloat(mapLoc[0]) < farXNeg){
+            farXNeg = CGFloat(mapLoc[0])
+        }
+        if(CGFloat(mapLoc[1]) > farYPos){
+            farYPos = CGFloat(mapLoc[1])
+        }
+        if(CGFloat(mapLoc[1]) < farYNeg){
+            farYNeg = CGFloat(mapLoc[1])
+        }
         
 //        print("created new map view")
 //        self.view.insertSubview(newMap.view, atIndex: 0)
@@ -438,6 +462,12 @@ class ViewController: UIViewController {
         if let mapViewController = segue.destinationViewController as? MapViewController {
             print("if let")
             mapViewController.maps = maps
+            mapViewController.curLocation = mapLoc
+            
+            mapViewController.farthestXNeg = farXNeg
+            mapViewController.farthestXPos = farXPos
+            mapViewController.farthestYNeg = farYNeg
+            mapViewController.farthestYPos = farYPos
             
         }
     }

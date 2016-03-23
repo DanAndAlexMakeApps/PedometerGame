@@ -161,9 +161,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfV-BI-xJd">
                                 <rect key="frame" x="0.0" y="72" width="375" height="375"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wfV-BI-xJd" secondAttribute="height" multiplier="1:1" id="Gdk-AF-nzh"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="QXq-kq-hEX" appends="YES" id="5Ug-xH-jIx"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-0n-2Mn">
                                 <rect key="frame" x="167" y="455" width="40" height="30"/>
@@ -187,8 +191,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVf-cF-2zc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="QXq-kq-hEX">
+                    <connections>
+                        <action selector="onMapPan:" destination="VIm-xB-4WK" id="tYu-ir-THr"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="693.5" y="1186.5"/>
+            <point key="canvasLocation" x="1280.5" y="1214.5"/>
         </scene>
         <!--Inventory-->
         <scene sceneID="nPA-9G-H7E">

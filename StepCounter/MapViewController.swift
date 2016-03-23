@@ -13,6 +13,14 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapBackgroundView: UIView!
     
     var maps: [mapObject]!
+    var curLocation: [Int]!
+    
+    var mapBackgroundOriginalCenter: CGPoint!
+    
+    var farthestXPos: CGFloat!
+    var farthestXNeg: CGFloat!
+    var farthestYPos: CGFloat!
+    var farthestYNeg: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +29,21 @@ class MapViewController: UIViewController {
             view.removeFromSuperview()
         }
         
+        
         mapBackgroundView.setNeedsLayout()
         mapBackgroundView.layoutIfNeeded()
         
+        var widthByCellCount = farthestXPos - farthestXNeg
+        var heightByCellCount = farthestYPos - farthestYNeg
+        
+        if(widthByCellCount < 10){
+            widthByCellCount = CGFloat(10)
+        }
+        if(heightByCellCount < 10){
+            heightByCellCount = CGFloat(10)
+        }
+        
+        mapBackgroundOriginalCenter = mapBackgroundView.center
         let mapWidth = mapBackgroundView.frame.size.width
         let mapHeight = mapBackgroundView.frame.size.height
         let mapCenterX = mapBackgroundView.center.x
@@ -34,15 +54,38 @@ class MapViewController: UIViewController {
         let cellWidth = mapWidth / 10
         let cellHeight = mapHeight / 10
         
+        mapBackgroundView.removeFromSuperview()
+        
+        print("height: \(heightByCellCount)")
+        print("width: \(widthByCellCount)")
+        
+        let newMapBackground = UIView()
+        newMapBackground.backgroundColor = UIColor.grayColor()
+        newMapBackground.frame.size.height = heightByCellCount * cellHeight
+        newMapBackground.frame.size.width = widthByCellCount * cellWidth
+        newMapBackground.center = mapCenter
+        
+        self.view.addSubview(newMapBackground)
         
         
         for map in maps{
             
+            
+            
             let newView = UIView(frame: CGRectMake(0, 0, cellWidth, cellHeight))
-            self.mapBackgroundView.addSubview(newView)
+            let xLoc = map.centerLocation[0] - curLocation[0]
+            let yLoc = map.centerLocation[1] - curLocation[1]
+            
+            newView.center.x = mapCenterX + CGFloat(map.centerLocation[0] - curLocation[0]) / 2.0 * cellWidth
+            newView.center.y = mapCenterY - CGFloat(map.centerLocation[1] - curLocation[1]) / 2.0 * cellHeight
+            
+
+            
+            newMapBackground.addSubview(newView)
             newView.backgroundColor = map.view.backgroundColor
-            newView.center.x = mapCenterX + CGFloat(map.centerLocation[0]) / 2.0 * cellWidth
-            newView.center.y = mapCenterY - CGFloat(map.centerLocation[1]) / 2.0 * cellHeight
+            
+            
+            
             var items = false
             for i in map.items{
                 if i.found == false{
@@ -74,6 +117,35 @@ class MapViewController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
 
+    
+    @IBAction func onMapPan(sender: UIPanGestureRecognizer) {
+        
+        let translation = sender.translationInView(mapBackgroundView)
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            
+
+            
+            
+            
+        } else if sender.state == UIGestureRecognizerState.Changed{
+            
+            mapBackgroundView.center = CGPoint(x: mapBackgroundOriginalCenter.x + translation.x, y: mapBackgroundOriginalCenter.y + translation.y)
+            
+
+
+            
+        }else if sender.state == UIGestureRecognizerState.Ended{
+            
+            mapBackgroundOriginalCenter = mapBackgroundView.center
+            
+        }
+
+        
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
