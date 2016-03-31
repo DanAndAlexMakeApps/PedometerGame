@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eDv-Ti-o5M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eDv-Ti-o5M">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -159,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfV-BI-xJd">
-                                <rect key="frame" x="0.0" y="72" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -169,19 +169,38 @@
                                     <outletCollection property="gestureRecognizers" destination="QXq-kq-hEX" appends="YES" id="5Ug-xH-jIx"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-0n-2Mn">
-                                <rect key="frame" x="167" y="455" width="40" height="30"/>
-                                <state key="normal" title="BACK"/>
-                                <connections>
-                                    <action selector="onBack:" destination="VIm-xB-4WK" eventType="touchUpInside" id="Nxf-kC-6qe"/>
-                                </connections>
-                            </button>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dii-Ma-Sth">
+                                <rect key="frame" x="0.0" y="439" width="375" height="179"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRS-0n-2Mn">
+                                        <rect key="frame" x="167" y="22" width="40" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="2z2-vI-UCx"/>
+                                            <constraint firstAttribute="height" constant="30" id="T58-wd-bc2"/>
+                                        </constraints>
+                                        <state key="normal" title="BACK"/>
+                                        <connections>
+                                            <action selector="onBack:" destination="VIm-xB-4WK" eventType="touchUpInside" id="Nxf-kC-6qe"/>
+                                            <action selector="ontapBack:" destination="VIm-xB-4WK" eventType="touchUpInside" id="v8b-bP-uss"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="KRS-0n-2Mn" firstAttribute="centerX" secondItem="Dii-Ma-Sth" secondAttribute="centerX" id="8w1-bk-ZgJ"/>
+                                    <constraint firstItem="KRS-0n-2Mn" firstAttribute="centerY" secondItem="Dii-Ma-Sth" secondAttribute="centerY" constant="-52.5" id="Jmk-kk-fT0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wfV-BI-xJd" secondAttribute="trailing" id="3NB-h0-U8V"/>
-                            <constraint firstItem="wfV-BI-xJd" firstAttribute="top" secondItem="YcG-Zj-CpH" secondAttribute="bottom" constant="8" id="7ul-cd-AET"/>
+                            <constraint firstItem="wfV-BI-xJd" firstAttribute="top" secondItem="YcG-Zj-CpH" secondAttribute="bottom" id="7ul-cd-AET"/>
+                            <constraint firstItem="Dii-Ma-Sth" firstAttribute="leading" secondItem="1hb-lh-W7s" secondAttribute="leading" id="G6w-u8-sIm"/>
+                            <constraint firstItem="Dii-Ma-Sth" firstAttribute="top" secondItem="wfV-BI-xJd" secondAttribute="bottom" id="Lwz-um-JzP"/>
+                            <constraint firstAttribute="trailing" secondItem="Dii-Ma-Sth" secondAttribute="trailing" id="bgT-Rq-2bq"/>
                             <constraint firstItem="wfV-BI-xJd" firstAttribute="leading" secondItem="1hb-lh-W7s" secondAttribute="leading" id="cdL-Gc-AzB"/>
+                            <constraint firstItem="dLa-MR-eRt" firstAttribute="top" secondItem="Dii-Ma-Sth" secondAttribute="bottom" id="e3D-e1-hqd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FXb-HZ-OKd"/>
