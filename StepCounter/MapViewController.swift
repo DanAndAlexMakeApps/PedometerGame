@@ -24,28 +24,16 @@ class MapViewController: UIViewController {
     
     var mapBackground: UIView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         curLocation[0] = curLocation[0] / 2
         curLocation[1] = curLocation[1] / 2
         
-        print("curlocation0: \(curLocation[0])")
-        print("curlocation1:   \(curLocation[1])")
-        
-        if(farthestXNeg > -5){
-            farthestXNeg = -5
-        }
-        if(farthestXPos < 5){
-            farthestXPos = 5
-        }
-        if(farthestYNeg > -5){
-            farthestYNeg = -5
-        }
-        if(farthestYPos < 5){
-            farthestYPos = 5
-        }
+        farthestXPos = farthestXPos / 2
+        farthestYPos = farthestYPos / 2
+        farthestXNeg = farthestXNeg / 2
+        farthestYNeg = farthestYNeg / 2
         
         print("farthestXNeg \(farthestXNeg)")
         print("farthestYNeg \(farthestYNeg)")
@@ -59,8 +47,8 @@ class MapViewController: UIViewController {
         mapBackgroundView.setNeedsLayout()
         mapBackgroundView.layoutIfNeeded()
         
-        var widthByCellCount = farthestXPos - farthestXNeg
-        var heightByCellCount = farthestYPos - farthestYNeg
+        let widthByCellCount = CGFloat(10)
+        let heightByCellCount = CGFloat(10)
         
         
         mapBackgroundOriginalCenter = mapBackgroundView.center
@@ -91,6 +79,12 @@ class MapViewController: UIViewController {
         let mapCenterX = newMapBackground.center.x
         let mapCenterY = newMapBackground.center.y
         
+        let mapsContainer = UIView()
+        self.view.addSubview(mapsContainer)
+        mapsContainer.frame = newMapBackground.frame
+        self.mapBackgroundOriginalCenter = mapsContainer.center
+        
+        
         for map in maps{
             
             
@@ -107,13 +101,13 @@ class MapViewController: UIViewController {
 
             newView.center.x = mapCenterX + CGFloat(map.centerLocation[0]) / 2.0 * cellWidth
             newView.center.y = mapCenterY - CGFloat(map.centerLocation[1]) / 2.0 * cellHeight
-            if(map.centerLocation[0]==curLocation[0] && map.centerLocation[1] == curLocation[1]){
+            if(map.centerLocation[0]==curLocation[0] * 2 && map.centerLocation[1] == curLocation[1] * 2){
                 newView.backgroundColor = UIColor(patternImage: UIImage(named: "playerDown")!)
                 
             } else{
                 newView.backgroundColor = map.view.backgroundColor
             }
-            newMapBackground.addSubview(newView)
+            mapsContainer.addSubview(newView)
             
             var items = false
             for i in map.items{
@@ -135,10 +129,16 @@ class MapViewController: UIViewController {
         
         
         let gr = UIPanGestureRecognizer(target: self, action: "onMapPan:")
-        newMapBackground.addGestureRecognizer(gr)
+        let gestureHandler = UIView()
+        gestureHandler.frame = newMapBackground.frame
+        gestureHandler.center = newMapBackground.center
+        self.view.addSubview(gestureHandler)
+        gestureHandler.addGestureRecognizer(gr)
+        
+        //mapsContainer.addGestureRecognizer(gr)
         //newMapBackground.center = mapBackgroundOriginalCenter
         
-        self.mapBackground = newMapBackground
+        self.mapBackground = mapsContainer
         self.view.sendSubviewToBack(newMapBackground)
         
         // Do any additional setup after loading the view.
@@ -161,6 +161,7 @@ class MapViewController: UIViewController {
         let translation = sender.translationInView(mapBackground)
         
         if sender.state == UIGestureRecognizerState.Began {
+            print("Starting pan");
 
             
             
