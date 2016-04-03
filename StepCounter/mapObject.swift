@@ -22,9 +22,9 @@ class mapObject: NSObject {
     
     init(cLoc: [Int], view: UIView, cellWidth: CGFloat, cellHeight: CGFloat, center: CGPoint){
         
-        print("making new map")
-        print("center  = \(view.center.x)")
-        print("center y = \(view.center.y)")
+        //print("making new map")
+        //print("center  = \(view.center.x)")
+        //print("center y = \(view.center.y)")
         
         self.centerLocation = cLoc
         self.items = []
@@ -70,7 +70,7 @@ class mapObject: NSObject {
                 
                 
             } else{
-                print("No item")
+                //print("No item")
             }
         }
         

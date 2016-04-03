@@ -27,6 +27,30 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        curLocation[0] = curLocation[0] / 2
+        curLocation[1] = curLocation[1] / 2
+        
+        print("curlocation0: \(curLocation[0])")
+        print("curlocation1:   \(curLocation[1])")
+        
+        if(farthestXNeg > -5){
+            farthestXNeg = -5
+        }
+        if(farthestXPos < 5){
+            farthestXPos = 5
+        }
+        if(farthestYNeg > -5){
+            farthestYNeg = -5
+        }
+        if(farthestYPos < 5){
+            farthestYPos = 5
+        }
+        
+        print("farthestXNeg \(farthestXNeg)")
+        print("farthestYNeg \(farthestYNeg)")
+        print("farthestXPos \(farthestXPos)")
+        print("farthestYPos \(farthestYPos)")
 
         for view in mapBackgroundView.subviews{
             view.removeFromSuperview()
@@ -42,29 +66,23 @@ class MapViewController: UIViewController {
         mapBackgroundOriginalCenter = mapBackgroundView.center
         let mapWidth = mapBackgroundView.frame.size.width
         let mapHeight = mapBackgroundView.frame.size.height
+        
+        print("mapWidth: \(mapWidth)")
+        print("mapHeight: \(mapHeight)")
 
         let mapCenter = mapBackgroundView.center
         let cellWidth = mapWidth / 10
         let cellHeight = mapHeight / 10
         
-        mapBackgroundView.removeFromSuperview()
+        print("mapCenter: \(mapCenter)")
         
-        print("height: \(heightByCellCount)")
-        print("width: \(widthByCellCount)")
+        mapBackgroundView.removeFromSuperview()
         
         let newMapBackground = UIView()
         newMapBackground.backgroundColor = UIColor.grayColor()
-        if(heightByCellCount * cellHeight > mapHeight){
-            newMapBackground.frame.size.height = heightByCellCount * cellHeight
-        } else {
-            newMapBackground.frame.size.height = mapHeight
-        }
-        if(widthByCellCount * cellWidth > mapWidth){
-            newMapBackground.frame.size.width = widthByCellCount * cellWidth
-        } else {
-            newMapBackground.frame.size.width = mapWidth
-        }
         
+        newMapBackground.frame.size.height = heightByCellCount * cellHeight
+        newMapBackground.frame.size.width = widthByCellCount * cellWidth
 
         newMapBackground.center = mapCenter
         
@@ -91,7 +109,6 @@ class MapViewController: UIViewController {
             newView.center.y = mapCenterY - CGFloat(map.centerLocation[1]) / 2.0 * cellHeight
             if(map.centerLocation[0]==curLocation[0] && map.centerLocation[1] == curLocation[1]){
                 newView.backgroundColor = UIColor(patternImage: UIImage(named: "playerDown")!)
-                print("adding playerdown")
                 
             } else{
                 newView.backgroundColor = map.view.backgroundColor

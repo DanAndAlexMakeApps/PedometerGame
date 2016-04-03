@@ -210,15 +210,15 @@ class ViewController: UIViewController {
     
     func afterMove() {
         
-        print("x = \(playerLoc[0])")
-        print("y = \(playerLoc[1])")
+        //print("x = \(playerLoc[0])")
+        //print("y = \(playerLoc[1])")
     
         
         for item in items{
             if(item.absolutePosition[0] == playerLoc[0]){
                 if(item.absolutePosition[1] == playerLoc[1]){
                     
-                    print("FOUND")
+                    //print("FOUND")
                     
                     item.found = true
                     item.itemView.removeFromSuperview()
@@ -458,9 +458,7 @@ class ViewController: UIViewController {
 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("segueing")
         if let mapViewController = segue.destinationViewController as? MapViewController {
-            print("if let")
             mapViewController.maps = maps
             mapViewController.curLocation = mapLoc
             

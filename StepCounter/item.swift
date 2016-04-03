@@ -27,12 +27,12 @@ class item: NSObject {
     init(name: String, description: String, picture: UIImage, xPos: Int, yPos: Int, width: CGFloat, height: CGFloat, mapCenter: CGPoint, positionInMap: [Int]!){
         
         
-        print("making new item")
-        print("center x = \(mapCenter.x)")
-        print("center y = \(mapCenter.y)")
+        //print("making new item")
+        //print("center x = \(mapCenter.x)")
+        //print("center y = \(mapCenter.y)")
         
-        print("position x = \(positionInMap[0])")
-        print("position y = \(positionInMap[1])")
+        //print("position x = \(positionInMap[0])")
+        //print("position y = \(positionInMap[1])")
             
         
         self.name = name
