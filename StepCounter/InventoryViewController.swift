@@ -28,7 +28,8 @@ class InventoryViewController: UIViewController, UICollectionViewDataSource {
         
 //        //for testing items
 //        let i1 = item(name: "test", description: "this is a test", picture: UIImage(named: "shield")!, xPos: 10, yPos: 10, width: 10, height: 10)
-//        items = [i1]
+//        items = [i1
+
     }
     
     

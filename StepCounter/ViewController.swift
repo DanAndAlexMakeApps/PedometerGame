@@ -61,6 +61,7 @@ class ViewController: UIViewController {
     var farXNeg: CGFloat!
     var farYNeg: CGFloat!
 
+    var itemsOwned: [item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,6 +224,12 @@ class ViewController: UIViewController {
                     
                     item.found = true
                     item.itemView.removeFromSuperview()
+                    
+                    itemsOwned.append(item)
+                    if let inventoryView = self.tabBarController?.viewControllers![1] as? InventoryViewController{
+                        print("adding")
+                        inventoryView.items?.append(item)
+                    }
                     
                 }
             }
