@@ -12,6 +12,9 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapBackgroundView: UIView!
     
+    @IBOutlet weak var controlPanalView: UIView!
+    
+    
     var maps: [mapObject]!
     var curLocation: [Int]!
     
@@ -21,6 +24,9 @@ class MapViewController: UIViewController {
     var farthestXNeg: CGFloat!
     var farthestYPos: CGFloat!
     var farthestYNeg: CGFloat!
+    
+    var totalTransX: CGFloat!
+    var totalTransY: CGFloat!
     
     var mapBackground: UIView!
     
@@ -35,11 +41,20 @@ class MapViewController: UIViewController {
         farthestXNeg = farthestXNeg / 2
         farthestYNeg = farthestYNeg / 2
         
-        print("farthestXNeg \(farthestXNeg)")
-        print("farthestYNeg \(farthestYNeg)")
-        print("farthestXPos \(farthestXPos)")
-        print("farthestYPos \(farthestYPos)")
+        if(farthestXPos < 5){
+            farthestXPos = 5
+        }
+        if(farthestXNeg > -5){
+            farthestXNeg = -5
+        }
+        if(farthestYPos < 5){
+            farthestYPos = 5
+        }
+        if(farthestYNeg > -5){
+            farthestYNeg = -5
+        }
 
+        
         for view in mapBackgroundView.subviews{
             view.removeFromSuperview()
         }
@@ -141,7 +156,23 @@ class MapViewController: UIViewController {
         self.mapBackground = mapsContainer
         self.view.sendSubviewToBack(newMapBackground)
         
+        
+        farthestXPos = farthestXPos * cellWidth
+        farthestYPos = farthestYPos * cellHeight
+        farthestXNeg = farthestXNeg * cellWidth
+        farthestYNeg = farthestYNeg * cellHeight
+        
+        totalTransX = CGFloat(0)
+        totalTransY = CGFloat(0)
+        
+        print("fxp: \(farthestXPos)")
+        print("fyp: \(farthestYPos)")
+        print("fxn: \(farthestXNeg)")
+        print("fyn: \(farthestYNeg)")
         // Do any additional setup after loading the view.
+        controlPanalView.backgroundColor = UIColor.whiteColor()
+        controlPanalView.alpha = 1.0
+        self.view.bringSubviewToFront(controlPanalView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -167,6 +198,11 @@ class MapViewController: UIViewController {
             
         } else if sender.state == UIGestureRecognizerState.Changed{
             
+//            if(totalTransX + translation.x < farthestXPos && totalTransX + translation.x > farthestXNeg){
+//                if(totalTransY + translation.y < farthestYPos && totalTransY + translation.y > farthestYNeg){
+//                    mapBackground.center = CGPoint(x: mapBackgroundOriginalCenter.x + translation.x, y: mapBackgroundOriginalCenter.y + translation.y)
+//                }
+//            }
             
             mapBackground.center = CGPoint(x: mapBackgroundOriginalCenter.x + translation.x, y: mapBackgroundOriginalCenter.y + translation.y)
             
@@ -175,7 +211,10 @@ class MapViewController: UIViewController {
         }else if sender.state == UIGestureRecognizerState.Ended{
             
             mapBackgroundOriginalCenter = mapBackground.center
-            
+            totalTransX = totalTransX + translation.x
+            totalTransY = totalTransY + translation.y
+            print("ttx: \(totalTransX)")
+            print("tty: \(totalTransY)")
         }
 
         

@@ -206,6 +206,7 @@
                     <navigationItem key="navigationItem" id="FXb-HZ-OKd"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="controlPanalView" destination="Dii-Ma-Sth" id="hcI-Af-jFk"/>
                         <outlet property="mapBackgroundView" destination="wfV-BI-xJd" id="daa-fs-J5R"/>
                     </connections>
                 </viewController>

@@ -60,6 +60,7 @@ class ViewController: UIViewController {
     var farYPos: CGFloat!
     var farXNeg: CGFloat!
     var farYNeg: CGFloat!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
