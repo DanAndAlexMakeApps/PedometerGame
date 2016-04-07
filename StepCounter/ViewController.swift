@@ -229,6 +229,7 @@ class ViewController: UIViewController {
                     if let inventoryView = self.tabBarController?.viewControllers![1] as? InventoryViewController{
                         print("adding")
                         inventoryView.items?.append(item)
+                        inventoryView.collectionView.reloadData()
                     }
                     
                 }
