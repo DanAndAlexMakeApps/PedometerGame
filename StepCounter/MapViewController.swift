@@ -150,6 +150,7 @@ class MapViewController: UIViewController {
         self.view.addSubview(gestureHandler)
         gestureHandler.addGestureRecognizer(gr)
         
+        
         //mapsContainer.addGestureRecognizer(gr)
         //newMapBackground.center = mapBackgroundOriginalCenter
         
@@ -170,9 +171,11 @@ class MapViewController: UIViewController {
         print("fxn: \(farthestXNeg)")
         print("fyn: \(farthestYNeg)")
         // Do any additional setup after loading the view.
-        controlPanalView.backgroundColor = UIColor.whiteColor()
-        controlPanalView.alpha = 1.0
-        self.view.bringSubviewToFront(controlPanalView)
+        controlPanalView.backgroundColor = UIColor.redColor()
+        controlPanalView.layer.zPosition = 10
+        
+        mapsContainer.layer.zPosition = 9
+        newMapBackground.layer.zPosition = 8
     }
 
     override func didReceiveMemoryWarning() {
@@ -198,7 +201,7 @@ class MapViewController: UIViewController {
             
         } else if sender.state == UIGestureRecognizerState.Changed{
             
-//            if(totalTransX + translation.x < farthestXPos && totalTransX + translation.x > farthestXNeg){
+//           if(totalTransX + translation.x < farthestXPos && totalTransX + translation.x > farthestXNeg){
 //                if(totalTransY + translation.y < farthestYPos && totalTransY + translation.y > farthestYNeg){
 //                    mapBackground.center = CGPoint(x: mapBackgroundOriginalCenter.x + translation.x, y: mapBackgroundOriginalCenter.y + translation.y)
 //                }

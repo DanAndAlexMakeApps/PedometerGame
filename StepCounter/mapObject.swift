@@ -49,21 +49,36 @@ class mapObject: NSObject {
             odds = 0.9
         }
         
+        odds = 0.9
         
         for i in 1...10{
             let chance = Double(CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
+            
             if(chance < odds){
                 
                 let xPos = Int(arc4random_uniform(20) + 1) - 10
                 let yPos = Int(arc4random_uniform(20) + 1) - 10
                 
                 
+                let typeRand = Int(arc4random_uniform(4))
                 
                 //customize item properly
                 //randomize position
                 let posInMap = [centerLocation[0] * 10 + xPos, centerLocation[1] * 10 + yPos]
                 
-                let newItem = item(name: "", description: "", picture: UIImage(named: "shield")!, xPos: xPos, yPos: yPos, width: cellWidth, height: cellHeight, mapCenter: view.center, positionInMap: posInMap)
+                var name = ""
+                
+                if(typeRand == 0){
+                    name = "h"
+                }else if(typeRand == 1){
+                    name = "shoes"
+                }else if(typeRand == 2){
+                    name = "breast"
+                }else if(typeRand == 3){
+                    name = "pants"
+                }
+                
+                let newItem = item(name: name, description: "description", picture: UIImage(named: "shield")!, xPos: xPos, yPos: yPos, width: cellWidth, height: cellHeight, mapCenter: view.center, positionInMap: posInMap, type: typeRand)
                 items.append(newItem)
                 self.view.addSubview(newItem.itemView)
                 

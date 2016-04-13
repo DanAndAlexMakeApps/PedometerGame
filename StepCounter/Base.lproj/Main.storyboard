@@ -185,7 +185,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.41901984840000001" green="1" blue="0.1094126481" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="KRS-0n-2Mn" firstAttribute="centerX" secondItem="Dii-Ma-Sth" secondAttribute="centerX" id="8w1-bk-ZgJ"/>
                                     <constraint firstItem="KRS-0n-2Mn" firstAttribute="centerY" secondItem="Dii-Ma-Sth" secondAttribute="centerY" constant="-52.5" id="Jmk-kk-fT0"/>
@@ -231,36 +231,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps Taken Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zx7-K6-vx7">
-                                <rect key="frame" x="118" y="62" width="145" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oGA-fS-H7L">
+                                <rect key="frame" x="233" y="31" width="122" height="232"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Breastplate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kv1-w9-e7a">
+                                <rect key="frame" x="20" y="247" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IA-33-whm">
-                                <rect key="frame" x="127" y="116" width="130" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fw-cw-qub">
+                                <rect key="frame" x="138" y="247" width="43" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps Since Download" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kma-7f-qhU">
-                                <rect key="frame" x="101" y="190" width="172" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shoes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9Y-wQ-nNR">
+                                <rect key="frame" x="138" y="136" width="48" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBK-a3-STm">
-                                <rect key="frame" x="20" y="243" width="314" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Helmet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0o-ki-84c">
+                                <rect key="frame" x="34" y="135" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inventory goes here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnh-X0-7PJ">
-                                <rect key="frame" x="111" y="289" width="152" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="czk-th-Z9c">
+                                <rect key="frame" x="33" y="35" width="77" height="79"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Nvz-vc-yBX" appends="YES" id="vGD-bg-XxU"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abG-iq-li4">
+                                <rect key="frame" x="127" y="35" width="77" height="79"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="4bw-Am-3ha" appends="YES" id="10w-oz-Vgv"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BQN-Mx-CkG">
+                                <rect key="frame" x="127" y="165" width="77" height="79"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="QUG-ev-wze" appends="YES" id="Dg5-wA-Bvi"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbk-oC-CEf">
+                                <rect key="frame" x="33" y="165" width="77" height="79"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="7rL-6j-Jow" appends="YES" id="5tW-Rw-VNp"/>
+                                </connections>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MYN-gl-LUk">
                                 <rect key="frame" x="-6" y="318" width="381" height="300"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KcK-A9-BwA">
@@ -310,12 +335,35 @@
                     <tabBarItem key="tabBarItem" title="Inventory" image="stairs" id="zD8-RZ-WRQ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="breastplateImage" destination="nbk-oC-CEf" id="Yfj-Xi-RIp"/>
                         <outlet property="collectionView" destination="MYN-gl-LUk" id="TF0-Pv-Wbl"/>
-                        <outlet property="stepsSinceDownload" destination="jBK-a3-STm" id="lKq-wx-1yF"/>
-                        <outlet property="stepsToday" destination="5IA-33-whm" id="uHT-ce-oxd"/>
+                        <outlet property="helmetImage" destination="czk-th-Z9c" id="o0G-wH-SLO"/>
+                        <outlet property="pantsImage" destination="BQN-Mx-CkG" id="I0E-B3-te0"/>
+                        <outlet property="personImage" destination="oGA-fS-H7L" id="WNi-4e-Gj2"/>
+                        <outlet property="shoesImage" destination="abG-iq-li4" id="cqZ-Rk-6I2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jCU-hH-G9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Nvz-vc-yBX">
+                    <connections>
+                        <action selector="onTapHelmet:" destination="FtA-lq-LRv" id="pci-BS-Y8I"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="4bw-Am-3ha">
+                    <connections>
+                        <action selector="onTapShoes:" destination="FtA-lq-LRv" id="4cx-ry-7RQ"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="7rL-6j-Jow">
+                    <connections>
+                        <action selector="onTapBreast:" destination="FtA-lq-LRv" id="161-fu-eAw"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="QUG-ev-wze">
+                    <connections>
+                        <action selector="onTapPants:" destination="FtA-lq-LRv" id="xNP-80-QBU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1795.5" y="365.5"/>
         </scene>

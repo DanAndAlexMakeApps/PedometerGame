@@ -219,24 +219,18 @@ class ViewController: UIViewController {
         for item in items{
             if(item.absolutePosition[0] == playerLoc[0]){
                 if(item.absolutePosition[1] == playerLoc[1]){
-                    
                     //print("FOUND")
-                    
                     item.found = true
                     item.itemView.removeFromSuperview()
-                    
                     itemsOwned.append(item)
                     if let inventoryView = self.tabBarController?.viewControllers![1] as? InventoryViewController{
                         print("adding")
                         inventoryView.items?.append(item)
-                        inventoryView.collectionView.reloadData()
+                        inventoryView.collectionView?.reloadData()
                     }
-                    
                 }
             }
         }
-
-        
     }
     
     func nextArea() {

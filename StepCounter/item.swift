@@ -18,13 +18,15 @@ class item: NSObject {
     var yPos: Int
     var found: Bool
     
+    var type: Int!
+    
     var itemView: UIImageView!
     
     var absolutePosition: [Int]!
     
     let correctionHeight: CGFloat! = 60
     
-    init(name: String, description: String, picture: UIImage, xPos: Int, yPos: Int, width: CGFloat, height: CGFloat, mapCenter: CGPoint, positionInMap: [Int]!){
+    init(name: String, description: String, picture: UIImage, xPos: Int, yPos: Int, width: CGFloat, height: CGFloat, mapCenter: CGPoint, positionInMap: [Int]!, type: Int){
         
         
         //print("making new item")
@@ -42,7 +44,7 @@ class item: NSObject {
         self.xPos = xPos
         self.yPos = yPos
         self.absolutePosition = positionInMap
-        
+        self.type = type
         
         
         itemView = UIImageView(frame: CGRectMake(0, 0, width, height))
