@@ -69,7 +69,6 @@ class InventoryViewController: UIViewController, UICollectionViewDataSource, UIG
     }
     
     func didTap(gestureRecognizer: UITapGestureRecognizer){
-        print("tapping")
         
         let cell = gestureRecognizer.view as! inventoryItem
         let index = cell.tag

@@ -210,20 +210,14 @@ class MapViewController: UIViewController {
             mapBackground.center = CGPoint(x: mapBackgroundOriginalCenter.x + translation.x, y: mapBackgroundOriginalCenter.y + translation.y)
             
             
-            
         }else if sender.state == UIGestureRecognizerState.Ended{
-            
             mapBackgroundOriginalCenter = mapBackground.center
             totalTransX = totalTransX + translation.x
             totalTransY = totalTransY + translation.y
             print("ttx: \(totalTransX)")
             print("tty: \(totalTransY)")
         }
-
-        
     }
-    
-    
     
     /*
     // MARK: - Navigation
