@@ -17,8 +17,7 @@ class InventoryViewController: UIViewController, UICollectionViewDataSource, UIG
     @IBOutlet weak var shoesImage: UIImageView!
     @IBOutlet weak var breastplateImage: UIImageView!
     @IBOutlet weak var pantsImage: UIImageView!
-    
-    
+
     
     @IBOutlet weak var personImage: UIImageView!
     
@@ -36,6 +35,8 @@ class InventoryViewController: UIViewController, UICollectionViewDataSource, UIG
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        
+        personImage.image = UIImage(named: "playerDown")
         
 
     }

@@ -160,7 +160,6 @@ class ViewController: UIViewController {
         //find current map from userdefauls--for now just creating from new
         self.mapView.removeFromSuperview()
         let newMap = mapObject(cLoc: [0, 0], view: UIView(frame: CGRectMake(0, 60, mapWidth, mapHeight)), cellWidth: self.cellWidth, cellHeight: self.cellHeight, center: center)
-        newMap.view.backgroundColor = UIColor(red: 101/255, green: 247/255, blue: 159/255, alpha: 1.0)
         self.view.addSubview(newMap.view)
         self.view.sendSubviewToBack(newMap.view)
         currentMap = newMap
@@ -258,8 +257,6 @@ class ViewController: UIViewController {
 
         currentMap.view.removeFromSuperview()
         
-        
-        newMap.view.backgroundColor = UIColor(colorLiteralRed: Float(Float(arc4random()) / Float(UINT32_MAX)), green: Float(Float(arc4random()) / Float(UINT32_MAX)), blue: Float(Float(arc4random()) / Float(UINT32_MAX)), alpha: Float(Float(arc4random()) / Float(UINT32_MAX)))
         self.view.addSubview(newMap.view)
         self.view.sendSubviewToBack(newMap.view)
         self.view.sendSubviewToBack(controlBoardView)

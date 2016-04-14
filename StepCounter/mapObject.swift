@@ -34,11 +34,27 @@ class mapObject: NSObject {
         self.center = center
         
         
+
+        
         //create an item creating function
         let distx = Double(centerLocation[0])
         let disty = Double(centerLocation[1])
         
         let dist = distx * distx + disty * disty
+        print(dist)
+        if(dist <= 100){
+            self.view.backgroundColor = UIColor.redColor()
+        } else if(dist <= 400){
+            self.view.backgroundColor = UIColor.orangeColor()
+        } else if(dist <= 1600){
+            self.view.backgroundColor = UIColor.yellowColor()
+        } else if(dist <= 6400){
+            self.view.backgroundColor = UIColor.greenColor()
+        } else if(dist <= 10000){
+            self.view.backgroundColor = UIColor.blueColor()
+        } else{
+            self.view.backgroundColor = UIColor.purpleColor()
+        }
         
         
         var odds = dist / (50.0*50.0+50.0*50.0)
