@@ -69,15 +69,10 @@ class MapViewController: UIViewController {
         mapBackgroundOriginalCenter = mapBackgroundView.center
         let mapWidth = mapBackgroundView.frame.size.width
         let mapHeight = mapBackgroundView.frame.size.height
-        
-        print("mapWidth: \(mapWidth)")
-        print("mapHeight: \(mapHeight)")
 
         let mapCenter = mapBackgroundView.center
         let cellWidth = mapWidth / 10
         let cellHeight = mapHeight / 10
-        
-        print("mapCenter: \(mapCenter)")
         
         mapBackgroundView.removeFromSuperview()
         
@@ -165,11 +160,7 @@ class MapViewController: UIViewController {
         
         totalTransX = CGFloat(0)
         totalTransY = CGFloat(0)
-        
-        print("fxp: \(farthestXPos)")
-        print("fyp: \(farthestYPos)")
-        print("fxn: \(farthestXNeg)")
-        print("fyn: \(farthestYNeg)")
+
         // Do any additional setup after loading the view.
         controlPanalView.backgroundColor = UIColor.redColor()
         controlPanalView.layer.zPosition = 10
@@ -186,7 +177,6 @@ class MapViewController: UIViewController {
 
     @IBAction func ontapBack(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
-        print("back")
     }
 
     
@@ -195,7 +185,6 @@ class MapViewController: UIViewController {
         let translation = sender.translationInView(mapBackground)
         
         if sender.state == UIGestureRecognizerState.Began {
-            print("Starting pan");
 
             
             
@@ -214,8 +203,6 @@ class MapViewController: UIViewController {
             mapBackgroundOriginalCenter = mapBackground.center
             totalTransX = totalTransX + translation.x
             totalTransY = totalTransY + translation.y
-            print("ttx: \(totalTransX)")
-            print("tty: \(totalTransY)")
         }
     }
     

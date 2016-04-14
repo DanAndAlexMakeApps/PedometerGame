@@ -85,7 +85,7 @@ class mapObject: NSObject {
                 
                 
             } else{
-                //print("No item")
+
             }
         }
         

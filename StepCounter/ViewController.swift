@@ -179,10 +179,6 @@ class ViewController: UIViewController {
         self.playerImage = playerImage
         self.view.sendSubviewToBack(controlBoardView)
         
-        print("Player location:")
-        print("x= \(playerImage.center.x)")
-        print("y= \(playerImage.center.y)")
-        
         farXNeg = 0
         farXPos = 0
         farYNeg = 0
@@ -224,7 +220,6 @@ class ViewController: UIViewController {
                     item.itemView.removeFromSuperview()
                     itemsOwned.append(item)
                     if let inventoryView = self.tabBarController?.viewControllers![1] as? InventoryViewController{
-                        print("adding")
                         inventoryView.items?.append(item)
                         inventoryView.collectionView?.reloadData()
                     }
@@ -287,46 +282,6 @@ class ViewController: UIViewController {
         if(CGFloat(mapLoc[1]) < farYNeg){
             farYNeg = CGFloat(mapLoc[1])
         }
-        
-//        print("created new map view")
-//        self.view.insertSubview(newMap.view, atIndex: 0)
-//        print("inserted")
-//        
-//        
-//        //animate the view of the new map to come in
-//        UIView.animateWithDuration(1) { () -> Void in
-//            newMap.view.center = self.center
-//        }
-//        print("animated")
-        
-        
-        //Old code:
-        
-        
-//        let mapFrame = CGRectOffset(mapView.frame, x, y)
-//        UIView.animateKeyframesWithDuration(2, delay: 0, options: .CalculationModeCubic, animations: {
-//                
-//            UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5) {
-//                self.mapView.frame = mapFrame
-//            }
-//                
-//            }, completion: nil)
-//        
-//        let playerFrame = CGRectOffset(playerLocation.frame, x, y)
-//        UIView.animateKeyframesWithDuration(2, delay: 0, options: .CalculationModeCubic, animations: {
-//            
-//            UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5) {
-//                self.playerLocation.frame = playerFrame
-//            }
-//            
-//            }, completion: nil)
-//        
-//        let newMapView = UIView(frame: CGRectMake(0, 60, 375, 375))
-//        newMapView.backgroundColor = UIColor(red: 101/255, green: 247/255, blue: 159/255, alpha: 1.0)
-//        self.view.insertSubview(newMapView, atIndex: 0)
-//        ++squaresMoved
-        
-        
         
         
     }
